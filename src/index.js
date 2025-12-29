@@ -11,6 +11,7 @@ const server = createServer(app)
 app.use(cors())
 
 const io = new Server(server, {
+  path: config.path,
   cors: {
     origin: config.allowedOrigins,
     methods: ["GET", "POST"],
