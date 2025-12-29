@@ -1,7 +1,9 @@
 
 export default function bindSockets(io) {
   io.on('connection', (socket) => {
+    console.log('CONNECTED TO SOCKET')
     socket.on('join-party-host', (data) => {
+      console.log('HOST JOINED', { data})
       const { partyId } = data
 
       socket.join(partyId)
@@ -9,6 +11,7 @@ export default function bindSockets(io) {
 
     socket.on('join-party-team', (data) => {
       const { partyId, teamName, teamId } = data
+      console.log('TEAM JOINED', { data })
       socket.join(partyId)
 
       io.to(partyId).emit('team-joined', {
